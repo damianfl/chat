@@ -9,24 +9,30 @@ class Chat extends Component {
       message: "",
       messages: [],
       pending: true,
-      email: "hehehe",
+      email: "",
       name: ""
     };
   }
-
   logOut = () => {
-    firebase.auth().signOut();
-  };
+    // firebase
+    //   .database()
+    //   .ref("/users/")
+    //   .remove()
 
+    firebase.auth().signOut();
+
+  };
   getUser = () => {
     firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.setState({ email: user.email });
-        console.log(user.email);
+      if (user && user.displayName) {
+        console.log(user.displayName)
+        this.setState({
+          email: user.email,
+          name: user.displayName || 'Annonymous'
+        });
       }
     });
   };
-
   componentDidMount() {
     firebase
       .database()
@@ -44,7 +50,10 @@ class Chat extends Component {
           pending: false
         });
       });
-    this.getUser();
+
+    setTimeout(() => {
+      this.getUser();
+    }, 500)
   }
   updateMessage = evt => {
     this.setState({
@@ -75,7 +84,7 @@ class Chat extends Component {
   handleKeyPress = evt => {
     if (evt.key === "Enter" && this.state.message !== "") {
       this.submitMessage(evt);
-      setTimeout(function() {
+      setTimeout(function () {
         const that = document.querySelector(".chxx");
         that.scrollTop = that.scrollHeight;
       }, 1);
@@ -88,8 +97,8 @@ class Chat extends Component {
 
     const actualMessages = this.state.messages.map(mess => {
       return (
-        <li key={mess.id}>
-          <strong>{mess.user}</strong> {mess.text}
+        <li style={{ marginBottom: '5px', listStyle: 'none' }} key={mess.id}>
+          <strong>{mess.user}:</strong> <span>{mess.text}</span>
         </li>
       );
     });
@@ -97,7 +106,7 @@ class Chat extends Component {
       <div onKeyPress={this.handleKeyPress}>
         <div
           className="chxx"
-          style={{ width: "100%", height: "500px", overflowY: "scroll" }}
+          style={{ width: "80%", height: "500px", padding: '20px', overflowY: "scroll" }}
         >
           {/*  */}
           {actualMessages}

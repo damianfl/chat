@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./Login.css";
 import firebase from "./config/config";
 
 class Login extends Component {
@@ -16,9 +17,11 @@ class Login extends Component {
     firebase
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(response => response.user.updateProfile({
-        displayName: this.state.name,
-      }))
+      .then(response =>
+        response.user.updateProfile({
+          displayName: this.state.name
+        })
+      )
       .catch(error => {
         console.log(error);
       });
@@ -29,18 +32,25 @@ class Login extends Component {
     firebase
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(response => response.user.updateProfile({
-        displayName: this.state.name,
-      }))
+      .then(response =>
+        response.user.updateProfile({
+          displayName: this.state.name
+        })
+      )
       .catch(error => {
         console.log(error);
       });
+    this.addUser();
+  };
 
-    
+  addUser = () => {
     firebase
       .database()
-      .ref("users/")
-      .push(this.state.name);
+      .ref("users/" + this.state.name)
+      .set({
+        username: this.state.name,
+        email: this.state.email
+      });
   };
 
   handleChange = evt => {
@@ -50,35 +60,38 @@ class Login extends Component {
   };
 
   render() {
-    const styleInput = {
-      height: '50px',
-      width: '300px',
-      height: '25px',
-      padding: '5px',
-
-      marginBottom: '5px',
-      border: '1px solid grey'
-
-
-
-    }
     const styleButton = {
-      width: '100%',
-      height: '40px',
-      borderRadius: '5px',
-      border: '0',
-      marginBottom: '5px',
-      fontWeight: 'bold',
-      backgroundColor: '#FA5185',
-      color: 'white'
-    }
+      width: "100%",
+      height: "40px",
+      borderRadius: "5px",
+      border: "0",
+      marginBottom: "5px",
+      fontWeight: "bold",
+      backgroundColor: "#FA5185",
+      color: "white"
+    };
     return (
-      <div style={{ width: '100%', height: '500px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-
-        <form style={{ padding: '50px', border: '2px solid #FA5185', borderRadius: '7px' }} action="">
-          <h1 style={{ marginTop: '0', color: '#FA5185' }}>Log in:</h1>
+      <div
+        style={{
+          width: "100%",
+          height: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
+        <form
+          style={{
+            padding: "50px",
+            border: "2px solid #FA5185",
+            borderRadius: "7px"
+          }}
+          action=""
+        >
+          <h1 className="head">Log in:</h1>
           <input
-            style={styleInput}
+            className="styleInput"
             onChange={this.handleChange}
             value={this.state.name}
             type="text"
@@ -87,7 +100,7 @@ class Login extends Component {
           />
           <br />
           <input
-            style={styleInput}
+            className="styleInput"
             onChange={this.handleChange}
             value={this.state.email}
             type="email"
@@ -96,7 +109,7 @@ class Login extends Component {
           />
           <br />
           <input
-            style={styleInput}
+            className="styleInput"
             onChange={this.handleChange}
             value={this.state.password}
             type="password"
@@ -104,15 +117,16 @@ class Login extends Component {
             placeholder="Podaj haslo"
           />
           <br />
-          <div style={{ width: '100%', marginTop: '25px' }}>
+          <div style={{ width: "100%", marginTop: "25px" }}>
             <button style={styleButton} type="submit" onClick={this.login}>
               Login
-          </button>
+            </button>
             <br />
-            <button style={styleButton} onClick={this.signup}>Sign up</button>
+            <button style={styleButton} onClick={this.signup}>
+              Sign up
+            </button>
           </div>
         </form>
-
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import "./reset.css";
 import "./index.css";
 import Login from "./components/Login";
 import Chat from "./components/Chat";
@@ -30,7 +31,7 @@ class App extends React.Component {
 
   render() {
     return <div>{this.state.user ? <Chat /> : <Login />}</div>;
-    // return <Login />;
+    // return <Chat />;
   }
 }
 

@@ -42,8 +42,8 @@ class Login extends Component {
       });
     this.addUser();
   };
-
   addUser = () => {
+
     firebase
       .database()
       .ref("users/" + this.state.name)
@@ -51,6 +51,9 @@ class Login extends Component {
         username: this.state.name,
         email: this.state.email
       });
+
+
+
   };
 
   handleChange = evt => {
@@ -60,33 +63,11 @@ class Login extends Component {
   };
 
   render() {
-    const styleButton = {
-      width: "100%",
-      height: "40px",
-      borderRadius: "5px",
-      border: "0",
-      marginBottom: "5px",
-      fontWeight: "bold",
-      backgroundColor: "#FA5185",
-      color: "white"
-    };
     return (
       <div
-        style={{
-          width: "100%",
-          height: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center"
-        }}
-      >
+        className="formWrapper">
         <form
-          style={{
-            padding: "50px",
-            border: "2px solid #FA5185",
-            borderRadius: "7px"
-          }}
+          className="loginForm"
           action=""
         >
           <h1 className="head">Log in:</h1>
@@ -117,12 +98,19 @@ class Login extends Component {
             placeholder="Podaj haslo"
           />
           <br />
-          <div style={{ width: "100%", marginTop: "25px" }}>
-            <button style={styleButton} type="submit" onClick={this.login}>
+          <div
+            className="buttonWrapper"
+          >
+            <button
+              className="loginButton"
+              type="submit"
+              onClick={this.login}>
               Login
             </button>
             <br />
-            <button style={styleButton} onClick={this.signup}>
+            <button
+              className="loginButton"
+              onClick={this.signup}>
               Sign up
             </button>
           </div>

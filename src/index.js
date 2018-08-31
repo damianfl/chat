@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./reset.css";
-import "./index.css";
 import Login from "./components/Login";
 import Chat from "./components/Chat";
+import "./index.css";
 import registerServiceWorker from "./registerServiceWorker";
 import firebase from "./components/config/config";
 

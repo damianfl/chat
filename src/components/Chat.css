@@ -1,13 +1,18 @@
+* {
+  font-size: 25px;
+}
+
 .wrapper {
   height: 100vh;
   position: relative;
+  background-color: rgb(253, 253, 253);
 }
 
 .mainChat {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 700px;
+  width: 1000px;
   margin: 0 auto;
   border: 2px solid #fa5185;
   border-radius: 5px;
@@ -15,22 +20,47 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -70%);
+  transform: translate(-50%, -50%);
+  font-size: 25px;
 }
 
 .chat {
-  width: 498px;
+  width: 648px;
   background-color: whitesmoke;
-  height: 300px;
+  height: 500px;
   padding: 20px;
-  overflow-y: scroll;
   overflow: hidden;
+  overflow-y: scroll;
   border-radius: 5px 0 0 0;
 }
 
+/* width */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+  background: whitesmoke;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+  background: #fa5185;
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff004c;
+}
+
 .userList {
-  width: 198px;
-  height: 300px;
+  width: 348px;
+  height: 500px;
   background: white;
   border-left: 2px solid #fa5185;
   padding: 20px 0 0 20px;
@@ -44,12 +74,12 @@
 }
 
 .listItem {
-  font-family: "Carrois Gothic SC", sans-serif;
+  font-family: 'Muli', sans-serif;
 }
 
 .mainInput {
   width: 100%;
-  height: 50px;
+  height: 80px;
   display: block;
   margin: 0 auto;
   border: 0;
@@ -59,12 +89,12 @@
 
 .inputSend {
   width: 100%;
+  height: 80px;
   background-color: #fa5185;
   border: 0;
   color: white;
-  height: 50px;
   padding: 5px;
-  border-radius: 0 0 5px 5px;
+  border-radius: 0 0 3px 3px;
 }
 
 .signOut {

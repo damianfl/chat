@@ -9,7 +9,7 @@ class Chat extends Component {
       message: "",
       messages: [],
       users: [],
-      // pending: true,
+      pending: true,
       email: "",
       name: ""
     };
@@ -46,8 +46,8 @@ class Chat extends Component {
           messagesArray.push(obj);
         }
         this.setState({
-          messages: currentMessages !== null ? messagesArray : []
-          // pending: false
+          messages: currentMessages !== null ? messagesArray : [],
+          pending: false
         });
       });
 
@@ -69,7 +69,7 @@ class Chat extends Component {
 
     setTimeout(() => {
       this.getUser();
-    }, 500);
+    }, 1000);
   }
   updateMessage = evt => {
     this.setState({

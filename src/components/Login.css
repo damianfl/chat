@@ -1,8 +1,9 @@
 .head {
-    font-family: "Carrois Gothic SC", sans-serif;
-    font-size: 25px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 30px;
     margin-bottom: 20px;
     color: #fa5185;
+    font-weight: bold;
 }
 
 .formWrapper {
@@ -16,17 +17,36 @@
 
 .loginForm {
     padding: 50px;
-    border: 2px solid #FA5185;
-    border-radius: 7px
+    border: 1px solid #FA5185;
+    border-radius: 7px;
 }
 
 .styleInput {
     width: 500px;
     height: 60px;
-    padding: 5px;
+    padding: 20px;
     margin-bottom: 5px;
-    border: 1px solid grey;
     font-size: 20px;
+    border: 1px solid #FA5185;
+}
+
+.paragraph {
+    padding-left: 10px;
+}
+
+.styleInput:focus {
+    background-color: #FA5185;
+    color: white;
+    transition: .1s;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(250, 81, 133, 1);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(250, 81, 133, 1);
+    box-shadow: 0px 0px 15px 0px rgba(250, 81, 133, 1);
+}
+
+input:focus::-webkit-input-placeholder { color:transparent; }
+
+.styleInput:focus {
+    outline: 2px solid #FA5185;
 }
 
 .buttonWrapper {
@@ -44,4 +64,5 @@
     background-color: #FA5185;
     color: white;
     font-size: 30px;
+    cursor: pointer;
 }

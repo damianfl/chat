@@ -43,17 +43,15 @@ class Login extends Component {
     this.addUser();
   };
   addUser = () => {
-
-    firebase
-      .database()
-      .ref("users/" + this.state.name)
-      .set({
-        username: this.state.name,
-        email: this.state.email
-      });
-
-
-
+    if (this.state.name.length >= 3 && this.state.name.length <= 10) {
+      firebase
+        .database()
+        .ref("users/" + this.state.name)
+        .set({
+          username: this.state.name,
+          email: this.state.email
+        });
+    }
   };
 
   handleChange = evt => {
@@ -79,6 +77,10 @@ class Login extends Component {
             name="name"
             placeholder="Podaj swoje imie"
           />
+          {this.state.name.length >= 3 && this.state.name.length <= 10 ?
+            <p className = "paragraph">Wszystko OK</p> :
+            <p className = "paragraph">*Imie musi zawierac nie od 3 do 10 znakow</p>
+          }
           <br />
           <input
             className="styleInput"
@@ -88,6 +90,10 @@ class Login extends Component {
             name="email"
             placeholder="Podaj maila"
           />
+          {this.state.email.indexOf('@') === -1 || this.state.email.indexOf('.') === -1 ?
+            <p className = "paragraph">*E-mail musi zawierac znak '@' oraz znak '.'</p> :
+            <p className = "paragraph">Wszystko OK</p>
+          }
           <br />
           <input
             className="styleInput"

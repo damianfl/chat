@@ -1,5 +1,6 @@
-# Project Title
+# Chat
 
+This is final project at the end of the holidays CodersLab course.
 This project is a simple chat where registered and logged in users can communicate
 with each other. [FIREBASE](https://firebase.google.com/) was used in this project as a backend.
 

@@ -19,7 +19,3 @@ Download files, open your command prompt, go to chat folder and type npm run.
 ## Authors
 
 - **Damian Flisikowski** - _Initial work_ - [damianfl](https://github.com/damianfl)
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

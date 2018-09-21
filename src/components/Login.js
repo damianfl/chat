@@ -12,8 +12,8 @@ class Login extends Component {
     };
   }
 
-  componentDidMount(){
-    console.log('zaladowane')
+  componentDidMount() {
+    console.log("zaladowane");
   }
 
   login = evt => {
@@ -67,34 +67,40 @@ class Login extends Component {
   render() {
     return (
       <div className="formWrapper">
-        <div className="bck" />
         <form className="loginForm" action="">
-          <input
-            className="loginForm--item styleInput"
-            onChange={this.handleChange}
-            value={this.state.name}
-            type="text"
-            name="name"
-            placeholder="Podaj swoje nick"
-          />
-
-          <input
-            className=" loginForm--item styleInput"
-            onChange={this.handleChange}
-            value={this.state.email}
-            type="email"
-            name="email"
-            placeholder="Podaj maila"
-          />
-
-          <input
-            className="loginForm--item styleInput"
-            onChange={this.handleChange}
-            value={this.state.password}
-            type="password"
-            name="password"
-            placeholder="Podaj haslo"
-          />
+          <div className="item--wrapper">
+            <input
+              className="loginForm--item styleInput"
+              onChange={this.handleChange}
+              value={this.state.name}
+              type="text"
+              name="name"
+              placeholder="Podaj swoj nick"
+            />
+            <i class="fa fa-user-o" aria-hidden="true" />
+          </div>
+          <div className="item--wrapper">
+            <input
+              className=" loginForm--item styleInput"
+              onChange={this.handleChange}
+              value={this.state.email}
+              type="email"
+              name="email"
+              placeholder="Podaj maila"
+            />
+            <i class="fa fa-envelope-o" aria-hidden="true" />
+          </div>
+          <div className="item--wrapper">
+            <input
+              className="loginForm--item styleInput"
+              onChange={this.handleChange}
+              value={this.state.password}
+              type="password"
+              name="password"
+              placeholder="Podaj haslo"
+            />
+            <i class="fa fa-key" aria-hidden="true"></i>
+          </div>
 
           <button
             className="loginForm--item loginButton"

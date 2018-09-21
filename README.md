@@ -4,7 +4,7 @@ This is final project at the end of the holidays CodersLab course.
 This project is a simple chat where registered and logged in users can communicate
 with each other. [FIREBASE](https://firebase.google.com/) was used in this project to 
 store data input from users and displaying user's messages in chat.
-[Link to this site](/https://chatwebweb.000webhostapp.com/)
+[CHAT](https://chatwebweb.000webhostapp.com/)
 ### Installing
 
 Download files, open your command prompt, go to chat folder and type npm i 

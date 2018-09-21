@@ -12,6 +12,10 @@ class Login extends Component {
     };
   }
 
+  componentDidMount(){
+    console.log('zaladowane')
+  }
+
   login = evt => {
     evt.preventDefault();
     firebase
@@ -62,64 +66,47 @@ class Login extends Component {
 
   render() {
     return (
-      <div
-        className="formWrapper">
-        <form
-          className="loginForm"
-          action=""
-        >
-          <h1 className="head">Log in:</h1>
+      <div className="formWrapper">
+        <div className="bck" />
+        <form className="loginForm" action="">
           <input
-            className="styleInput"
+            className="loginForm--item styleInput"
             onChange={this.handleChange}
             value={this.state.name}
             type="text"
             name="name"
             placeholder="Podaj swoje imie"
           />
-          {this.state.name.length >= 3 && this.state.name.length <= 10 ?
-            <p className = "paragraph">Wszystko OK</p> :
-            <p className = "paragraph">*Imie musi zawierac nie od 3 do 10 znakow</p>
-          }
-          <br />
+
           <input
-            className="styleInput"
+            className=" loginForm--item styleInput"
             onChange={this.handleChange}
             value={this.state.email}
             type="email"
             name="email"
             placeholder="Podaj maila"
           />
-          {this.state.email.indexOf('@') === -1 || this.state.email.indexOf('.') === -1 ?
-            <p className = "paragraph">*E-mail musi zawierac znak '@' oraz znak '.'</p> :
-            <p className = "paragraph">Wszystko OK</p>
-          }
-          <br />
+
           <input
-            className="styleInput"
+            className="loginForm--item styleInput"
             onChange={this.handleChange}
             value={this.state.password}
             type="password"
             name="password"
             placeholder="Podaj haslo"
           />
-          <br />
-          <div
-            className="buttonWrapper"
+
+          <button
+            className="loginForm--item loginButton"
+            type="submit"
+            onClick={this.login}
           >
-            <button
-              className="loginButton"
-              type="submit"
-              onClick={this.login}>
-              Login
-            </button>
-            <br />
-            <button
-              className="loginButton"
-              onClick={this.signup}>
-              Sign up
-            </button>
-          </div>
+            Login
+          </button>
+
+          <button className="loginForm--item loginButton" onClick={this.signup}>
+            Sign up
+          </button>
         </form>
       </div>
     );

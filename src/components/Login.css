@@ -6,6 +6,23 @@
     font-weight: bold;
 }
 
+.formWrapper:before {
+    content: '';
+    background-image: url(../img/sunshine.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    filter: blur(10px);
+    -ms-filter: blur(10px);
+    -webkit-filter: blur(10px);
+}
+
 .formWrapper {
     width: 100%;
     height: 100vh;
@@ -13,56 +30,64 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .loginForm {
-    padding: 50px;
-    border: 1px solid #FA5185;
-    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+}
+
+.loginForm--item {
+    border-radius: 50px;
+    color: white;
 }
 
 .styleInput {
     width: 500px;
     height: 60px;
     padding: 20px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     font-size: 20px;
-    border: 1px solid #FA5185;
+    border: 1px solid rgba(255, 255, 255, 0.054);
+    background-color: rgba(255, 255, 255, 0.054);
+}
+
+.styleInput:focus {
+    background-color: rgba(141, 83, 83, 0.856);
+    color: white;
+    transition: .1s;
+    outline: 0;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(141, 83, 83, 0.856);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(141, 83, 83, 0.856);
+    box-shadow: 0px 0px 15px 0px rgba(141, 83, 83, 0.856);
 }
 
 .paragraph {
     padding-left: 10px;
 }
 
-.styleInput:focus {
-    background-color: #FA5185;
-    color: white;
-    transition: .1s;
-    -webkit-box-shadow: 0px 0px 15px 0px rgba(250, 81, 133, 1);
-    -moz-box-shadow: 0px 0px 15px 0px rgba(250, 81, 133, 1);
-    box-shadow: 0px 0px 15px 0px rgba(250, 81, 133, 1);
-}
-
-input:focus::-webkit-input-placeholder { color:transparent; }
-
-.styleInput:focus {
-    outline: 2px solid #FA5185;
-}
-
-.buttonWrapper {
-    width: 100%;
-    margin-top: 25px;
+input:focus::-webkit-input-placeholder {
+    color: transparent;
 }
 
 .loginButton {
     width: 100%;
     height: 60px;
-    border-radius: 5px;
     border: 0;
     margin-bottom: 5px;
     font-weight: bold;
-    background-color: #FA5185;
+    background-color: rgba(141, 83, 83, 0.856);
     color: white;
     font-size: 30px;
     cursor: pointer;
+}
+
+.loginButton:focus {
+    outline: 0;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(141, 83, 83, 0.856);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(141, 83, 83, 0.856);
+    box-shadow: 0px 0px 15px 0px rgba(141, 83, 83, 0.856);
 }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Chat.css";
 import firebase from "./config/config";
+import { CSSTransitionGroup } from "react-transition-group";
 
 class Chat extends Component {
   constructor(props) {
@@ -9,9 +10,9 @@ class Chat extends Component {
       message: "",
       messages: [],
       users: [],
-      pending: true,
       email: "",
-      name: ""
+      name: "",
+      pending: true
     };
   }
   logOut = () => {
@@ -112,7 +113,11 @@ class Chat extends Component {
   };
   render() {
     if (this.state.pending) {
-      return <p> Loading... </p>;
+      return (
+        <div className="loading">
+          <i class="fa fa-spinner fa-pulse fa-3x fa-fw" />
+        </div>
+      );
     }
 
     const actualMessages = this.state.messages.map(mess => {
@@ -133,14 +138,14 @@ class Chat extends Component {
         </li>
       );
     });
-    const actualUsers = this.state.users.map(mess => {
+    const actualUsers = this.state.users.map(messages => {
       return (
         <li
           className="userItem"
-          style={{ marginBottom: "5px", color: "#fa5185" }}
-          key={mess.id}
+         
+          key={messages.id}
         >
-          <strong>{mess.username}</strong>
+          <strong>{messages.username}</strong>
         </li>
       );
     });
@@ -148,27 +153,34 @@ class Chat extends Component {
       <div className="wrapper" onKeyPress={this.handleKeyPress}>
         <div style={{ height: "10px" }} />
         <div className="mainChat">
-          <div className="chat">{actualMessages}</div>
+          <div className="chat">
+            <CSSTransitionGroup
+              transitionName="EnterTransition"
+              transitionAppear={false}
+              transitionEnter={true}
+              transitionEnterTimeout={500}
+              transitionLeave={true}
+              transitionLeaveTimeout={500}
+            >
+              {actualMessages}
+            </CSSTransitionGroup>
+          </div>
           <div className="userList">{actualUsers}</div>
           <input
             className="mainInput"
             onChange={this.updateMessage}
             value={this.state.message}
             type="text"
-            placeholder="Wprowadź wiadomość"
+            placeholder="Write a message ..."
           />
           <input
             className="inputSend"
             onClick={this.submitMessage}
             style={{}}
             type="submit"
-            value="Wyślij wiadomość"
+            value="Send your message"
           />
-          <div className="signOut">
-            <button className="out" onClick={this.logOut}>
-              X
-            </button>
-          </div>
+          <button className = "logout--button" onClick={this.logOut}>log out</button>
         </div>
       </div>
     );

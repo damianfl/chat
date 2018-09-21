@@ -75,7 +75,7 @@ class Login extends Component {
             value={this.state.name}
             type="text"
             name="name"
-            placeholder="Podaj swoje imie"
+            placeholder="Podaj swoje nick"
           />
 
           <input

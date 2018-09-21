@@ -61,6 +61,7 @@
   background-color: rgba(141, 83, 83, 0.856);
   border: 0;
   color: white;
+  cursor: pointer;
 }
 
 .chat {

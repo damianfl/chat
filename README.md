@@ -8,7 +8,8 @@ store data input from users and displaying user's messages in chat.
 ### Installing
 
 Download files, open your command prompt, go to chat folder and type npm i 
-and then npm start.
+and then npm start. Also you need to create new project on firebase and add your
+api confing in config.js
 
 ## Built With
 

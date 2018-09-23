@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./Chat.css";
 import firebase from "./config/config";
 import { CSSTransitionGroup } from "react-transition-group";
+import "emoji-mart/css/emoji-mart.css";
+import { Picker } from "emoji-mart";
 
 class Chat extends Component {
   constructor(props) {
@@ -77,6 +79,14 @@ class Chat extends Component {
       message: evt.target.value
     });
   };
+
+  addEmoji = e => {
+    let emojiPic = String.fromCodePoint(`0x${e.unified}`);
+    this.setState({
+      message: this.state.message + emojiPic
+    });
+  };
+
   submitMessage = evt => {
     evt.preventDefault();
 
@@ -111,6 +121,7 @@ class Chat extends Component {
       }, 1);
     }
   };
+
   render() {
     if (this.state.pending) {
       return (
@@ -140,11 +151,7 @@ class Chat extends Component {
     });
     const actualUsers = this.state.users.map(messages => {
       return (
-        <li
-          className="userItem"
-         
-          key={messages.id}
-        >
+        <li className="userItem" key={messages.id}>
           <strong>{messages.username}</strong>
         </li>
       );
@@ -166,9 +173,10 @@ class Chat extends Component {
             </CSSTransitionGroup>
           </div>
           <div className="userList">{actualUsers}</div>
+          <Picker onSelect={this.addEmoji} />
           <input
             className="mainInput"
-            onChange={this.updateMessage}
+            onChange={this.addEmoji}
             value={this.state.message}
             type="text"
             placeholder="Write a message ..."
@@ -180,7 +188,9 @@ class Chat extends Component {
             type="submit"
             value="Send your message"
           />
-          <button className = "logout--button" onClick={this.logOut}>log out</button>
+          <button className="logout--button" onClick={this.logOut}>
+            log out
+          </button>
         </div>
       </div>
     );

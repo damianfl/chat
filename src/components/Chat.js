@@ -75,7 +75,6 @@ class Chat extends Component {
       this.getUser();
     }, 1000);
   }
-  
 
   submitMessage = evt => {
     evt.preventDefault();
@@ -111,18 +110,29 @@ class Chat extends Component {
       }, 1);
     }
   };
-  addEmoji = (e) => {
-    let emojiPic = String.fromCodePoint(`0x${e.unified}`)
-       this.setState({
-         message: this.state.message + emojiPic
-       })
-  }
+  addEmoji = e => {
+    let emojiPic = String.fromCodePoint(`0x${e.unified}`);
+    this.setState({
+      message: this.state.message + emojiPic
+    });
+  };
 
-  updateMessage = (e) =>{
+  updateMessage = e => {
     this.setState({
       message: e.target.value
-    })
-  }
+    });
+  };
+
+  hide = e => {
+    if (this.state.eclass === "vis") {
+      this.setState({
+        eclass: "notVis"
+      });
+    }
+  };
+  focus = e => {
+    this.nameInput.focus();
+  };
 
   showEmoji = e => {
     if (this.state.eclass === "notVis") {
@@ -156,6 +166,9 @@ class Chat extends Component {
             style={{
               fontWeight: "bold"
             }}
+            ref={input => {
+              this.nameInput = input;
+            }}
           >
             {mess.user}:
           </span>{" "}
@@ -171,7 +184,11 @@ class Chat extends Component {
       );
     });
     return (
-      <div className="wrapper" onKeyPress={this.handleKeyPress}>
+      <div
+        className="wrapper"
+        onClick={this.hide}
+        onKeyPress={this.handleKeyPress}
+      >
         <div style={{ height: "10px" }} />
         <div className="mainChat">
           <div className="chat">
@@ -189,10 +206,13 @@ class Chat extends Component {
           <div className="userList">{actualUsers}</div>
 
           <div className={this.state.eclass}>
-            <Picker onSelect={this.addEmoji} />
+            <Picker onClick = {this.focus} onSelect={this.addEmoji} />
           </div>
           <div className="mainInputWrapper">
             <input
+              ref={input => {
+                this.nameInput = input;
+              }}
               className="mainInput"
               onChange={this.updateMessage}
               value={this.state.message}

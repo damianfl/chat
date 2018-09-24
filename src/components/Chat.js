@@ -14,7 +14,8 @@ class Chat extends Component {
       users: [],
       email: "",
       name: "",
-      pending: true
+      pending: true,
+      eclass: "notVis"
     };
   }
   logOut = () => {
@@ -74,18 +75,7 @@ class Chat extends Component {
       this.getUser();
     }, 1000);
   }
-  updateMessage = evt => {
-    this.setState({
-      message: evt.target.value
-    });
-  };
-
-  addEmoji = e => {
-    let emojiPic = String.fromCodePoint(`0x${e.unified}`);
-    this.setState({
-      message: this.state.message + emojiPic
-    });
-  };
+  
 
   submitMessage = evt => {
     evt.preventDefault();
@@ -119,6 +109,30 @@ class Chat extends Component {
         const that = document.querySelector(".chat");
         that.scrollTop = that.scrollHeight;
       }, 1);
+    }
+  };
+  addEmoji = (e) => {
+    let emojiPic = String.fromCodePoint(`0x${e.unified}`)
+       this.setState({
+         message: this.state.message + emojiPic
+       })
+  }
+
+  updateMessage = (e) =>{
+    this.setState({
+      message: e.target.value
+    })
+  }
+
+  showEmoji = e => {
+    if (this.state.eclass === "notVis") {
+      this.setState({
+        eclass: "vis"
+      });
+    } else {
+      this.setState({
+        eclass: "notVis"
+      });
     }
   };
 
@@ -173,14 +187,23 @@ class Chat extends Component {
             </CSSTransitionGroup>
           </div>
           <div className="userList">{actualUsers}</div>
-          <Picker onSelect={this.addEmoji} />
-          <input
-            className="mainInput"
-            onChange={this.addEmoji}
-            value={this.state.message}
-            type="text"
-            placeholder="Write a message ..."
-          />
+
+          <div className={this.state.eclass}>
+            <Picker onSelect={this.addEmoji} />
+          </div>
+          <div className="mainInputWrapper">
+            <input
+              className="mainInput"
+              onChange={this.updateMessage}
+              value={this.state.message}
+              type="text"
+              placeholder="Write a message ..."
+            />
+            <button className="showEmojisButton" onClick={this.showEmoji}>
+              <i class="fa fa-smile-o" aria-hidden="true" />
+            </button>
+          </div>
+
           <input
             className="inputSend"
             onClick={this.submitMessage}

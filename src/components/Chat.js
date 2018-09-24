@@ -5,6 +5,8 @@ import { CSSTransitionGroup } from "react-transition-group";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
 
+import MainInput from "./MainInput/MainInput";
+
 class Chat extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +25,6 @@ class Chat extends Component {
       .database()
       .ref("users/" + this.state.name)
       .remove();
-
     firebase.auth().signOut();
   };
   getUser = () => {
@@ -123,7 +124,7 @@ class Chat extends Component {
     });
   };
 
-  hide = e => {
+  hide = () => {
     if (this.state.eclass === "vis") {
       this.setState({
         eclass: "notVis"
@@ -166,12 +167,9 @@ class Chat extends Component {
             style={{
               fontWeight: "bold"
             }}
-            ref={input => {
-              this.nameInput = input;
-            }}
           >
             {mess.user}:
-          </span>{" "}
+          </span>
           <span>{mess.text}</span>
         </li>
       );
@@ -206,23 +204,17 @@ class Chat extends Component {
           <div className="userList">{actualUsers}</div>
 
           <div className={this.state.eclass}>
-            <Picker onClick = {this.focus} onSelect={this.addEmoji} />
+            <Picker onClick={this.focus} onSelect={this.addEmoji} />
           </div>
-          <div className="mainInputWrapper">
-            <input
-              ref={input => {
-                this.nameInput = input;
-              }}
-              className="mainInput"
-              onChange={this.updateMessage}
-              value={this.state.message}
-              type="text"
-              placeholder="Write a message ..."
-            />
-            <button className="showEmojisButton" onClick={this.showEmoji}>
-              <i class="fa fa-smile-o" aria-hidden="true" />
-            </button>
-          </div>
+
+          <MainInput
+            message={this.state.message}
+            updateMessage={this.updateMessage}
+            showEmoji={this.showEmoji}
+            eclass = {this.state.eclass}
+            addEmoji = {this.addEmoji}
+            
+          />
 
           <input
             className="inputSend"

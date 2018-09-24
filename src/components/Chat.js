@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import "./Chat.css";
 import firebase from "./config/config";
 import { CSSTransitionGroup } from "react-transition-group";
 import "emoji-mart/css/emoji-mart.css";
-import { Picker } from "emoji-mart";
+import "./Chat.css";
 
 import MainInput from "./MainInput/MainInput";
 
@@ -17,20 +16,18 @@ class Chat extends Component {
       email: "",
       name: "",
       pending: true,
-      eclass: "notVis"
+      eclass: "notVis", 
+      ecolor: "transparent"
     };
   }
-  logOut = () => {
-    firebase
-      .database()
-      .ref("users/" + this.state.name)
-      .remove();
-    firebase.auth().signOut();
+  updateMessage = e => {
+    this.setState({
+      message: e.target.value
+    });
   };
   getUser = () => {
     firebase.auth().onAuthStateChanged(user => {
       if (user && user.displayName) {
-        console.log(user.displayName);
         this.setState({
           email: user.email,
           name: user.displayName || "Annonymous"
@@ -92,8 +89,8 @@ class Chat extends Component {
       message: ""
     });
     setTimeout(function() {
-      const that = document.querySelector(".chat");
-      that.scrollTop = that.scrollHeight;
+      const chatWindow = document.querySelector(".chat");
+      chatWindow.scrollTop = chatWindow.scrollHeight;
     }, 1);
 
     firebase
@@ -111,40 +108,40 @@ class Chat extends Component {
       }, 1);
     }
   };
+
+  hide = () => {
+    if (this.state.eclass === "vis") {
+      this.setState({
+        eclass: "notVis",
+        ecolor: "transparent"  
+      });
+    }
+  };
   addEmoji = e => {
     let emojiPic = String.fromCodePoint(`0x${e.unified}`);
     this.setState({
       message: this.state.message + emojiPic
     });
   };
-
-  updateMessage = e => {
-    this.setState({
-      message: e.target.value
-    });
-  };
-
-  hide = () => {
-    if (this.state.eclass === "vis") {
-      this.setState({
-        eclass: "notVis"
-      });
-    }
-  };
-  focus = e => {
-    this.nameInput.focus();
-  };
-
   showEmoji = e => {
     if (this.state.eclass === "notVis") {
       this.setState({
-        eclass: "vis"
+        eclass: "vis",
+        ecolor: "rgba(141, 83, 83, 0.856)"
       });
     } else {
       this.setState({
-        eclass: "notVis"
+        eclass: "notVis",
+        ecolor: "transparent"
       });
     }
+  };
+  logOut = () => {
+    firebase
+      .database()
+      .ref("users/" + this.state.name)
+      .remove();
+    firebase.auth().signOut();
   };
 
   render() {
@@ -165,7 +162,8 @@ class Chat extends Component {
         >
           <span
             style={{
-              fontWeight: "bold"
+              fontWeight: "bold",
+              marginRight: "10px"
             }}
           >
             {mess.user}:
@@ -203,17 +201,14 @@ class Chat extends Component {
           </div>
           <div className="userList">{actualUsers}</div>
 
-          <div className={this.state.eclass}>
-            <Picker onClick={this.focus} onSelect={this.addEmoji} />
-          </div>
-
           <MainInput
             message={this.state.message}
             updateMessage={this.updateMessage}
             showEmoji={this.showEmoji}
-            eclass = {this.state.eclass}
-            addEmoji = {this.addEmoji}
-            
+            eclass={this.state.eclass}
+            ecolor={this.state.ecolor}
+            addEmoji={this.addEmoji}
+
           />
 
           <input

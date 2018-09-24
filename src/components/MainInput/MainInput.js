@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import "./MainInput.css";
-
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
+import "./MainInput.css";
 
 class MainInput extends Component {
   constructor(props) {
@@ -13,9 +12,13 @@ class MainInput extends Component {
   };
   render() {
     return (
-      <div className = "mainInputWrapper--wrapper">
+      <div className="mainInputWrapper--wrapper">
         <div className={this.props.eclass}>
-          <Picker onClick={this.focus} onSelect={this.props.addEmoji} />
+          <Picker
+            style={{ width: "350px" }}
+            onClick={this.focus}
+            onSelect={this.props.addEmoji}
+          />
         </div>
         <div className="mainInputWrapper">
           <input
@@ -28,7 +31,11 @@ class MainInput extends Component {
             type="text"
             placeholder="Write a message ..."
           />
-          <button className="showEmojisButton" onClick={this.props.showEmoji}>
+          <button
+            style={{ backgroundColor: this.props.ecolor }}
+            className="showEmojisButton"
+            onClick={this.props.showEmoji}
+          >
             <i class="fa fa-smile-o" aria-hidden="true" />
           </button>
         </div>

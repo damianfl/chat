@@ -44,12 +44,12 @@
     width: 1000px;
     margin: 0 auto;
     border-radius: 5px;
-    /* overflow: hidden; */
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 25px;
+    overflow: hidden;
 }
 
 .logout--button {
@@ -104,7 +104,7 @@
 }
 
 .userList {
-    width: 348px;
+    width: 350px;
     height: 500px;
     border: 1px solid rgba(255, 255, 255, 0.054);
     background-color: rgba(255, 255, 255, 0.054);
@@ -122,27 +122,11 @@
     font-family: 'Muli', sans-serif;
 }
 
-.mainInput {
-    width: calc(100% - 80px);
-    height: 80px;
-    display: block;
-     border: 1px solid rgba(255, 255, 255, 0.054);
-    background-color: rgba(255, 255, 255, 0.054);
-    padding: 5px;
-    color: white;
-    transition: .1s;
-}
-
-.mainInput:focus {
-    transition: .1s;
-    outline: 0;
-    background-color: rgba(141, 83, 83, 0.856);
-}
-
 .inputSend {
     cursor: pointer;
     width: 100%;
     height: 80px;
+    margin-top: 2px;
     background-color: rgba(141, 83, 83, 0.856);
     border: 0;
     color: white;
@@ -180,43 +164,32 @@
     transition: all 0.5s ease-in;
 }
 
-/* emoji classes */
+/* emoji styling panel  */
 
-.notVis {
+.emoji-mart-bar {
     display: none;
 }
 
-.vis {
-    display: block;
-    position: absolute;
-    right: 0;
-    bottom: 160px;
+.emoji-mart-search {
+    display: none;
 }
 
-.mainInputWrapper {
-    position: relative;
-    width: 100%;
+.emoji-mart {
+    width: 500px;
+    background-color: rgba(255, 255, 255, 0.054);
+    border: 1px solid rgba(255, 255, 255, 0.054);
 }
 
-.showEmojisButton {
-    position: absolute;
-    height: 80px;
-    width: 80px;
-    right: 0;
-    top: 0;
-    background-color: transparent;
-    color: white;
-    border: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.054);
-    border-left: 1px solid rgba(255, 255, 255, 0.054);
-    border-right: 1px solid rgba(255, 255, 255, 0.054);
-    transition: .1s;
-    outline: 0 !important;
+.emoji-mart-scroll {
+    padding: 0;
 }
 
-.showEmojisButton:hover {
+.emoji-mart-category-label span {
     background-color: rgba(141, 83, 83, 0.856);
-    transition: .1s;
-    font-size: 30px;
-    cursor: pointer;
+    color: #fff;
+    text-align: center;
+}
+
+.emoji-mart-category .emoji-mart-emoji:hover:before{
+    background-color: black;
 }

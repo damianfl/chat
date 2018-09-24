@@ -1,5 +1,67 @@
-
-.mainInputWrapper--wrapper{
+.mainInputWrapper--wrapper {
     width: 100%;
-    margin-top: 3px;
+    margin-top: 2px;
+}
+
+.mainInputWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.mainInput {
+    width: calc(100% - 80px);
+    height: 80px;
+    display: block;
+    border: 1px solid rgba(255, 255, 255, 0.054);
+    background-color: rgba(255, 255, 255, 0.054);
+    padding: 5px;
+    color: white;
+    transition: 0.1s;
+}
+
+.mainInput:focus {
+    transition: 0.1s;
+    outline: 0;
+    background-color: rgba(141, 83, 83, 0.856);
+}
+
+.showEmojisButton {
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    right: 0;
+    top: 0;
+    color: white;
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.054);
+    border-left: 1px solid rgba(255, 255, 255, 0.054);
+    border-right: 1px solid rgba(255, 255, 255, 0.054);
+    transition: 0.1s;
+    outline: 0 !important;
+    transition: .2s;
+}
+
+.showEmojisButton:hover {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* emoji visibility classes */
+
+.notVis {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 160px;
+    transform: translateX(100%);
+    transition: .2s;    
+}
+
+.vis {
+    transition: .2s;
+    transform: translateX(0);
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 160px;
 }

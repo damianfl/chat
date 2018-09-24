@@ -23,8 +23,9 @@ api confing in config.js
 ## Things need to be done
 
 - RWD
-- Split Chat Component to smaller ones
+- Break "Chat" Component into smaller ones
 - Add some styling to emojis
+- Add Routing
 - Later, chat rooms and private messages
 
 ## Authors

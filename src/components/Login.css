@@ -18,9 +18,9 @@
     top: 0;
     left: 0;
     z-index: -1;
-    filter: blur(10px);
-    -ms-filter: blur(10px);
-    -webkit-filter: blur(10px);
+    filter: blur(2px);
+    -ms-filter: blur(2px);
+    -webkit-filter: blur(2px);
 }
 
 .formWrapper {

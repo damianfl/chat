@@ -12,10 +12,6 @@ class Login extends Component {
     };
   }
 
-  componentDidMount() {
-    console.log("zaladowane");
-  }
-
   login = evt => {
     evt.preventDefault();
     firebase
@@ -99,7 +95,7 @@ class Login extends Component {
               name="password"
               placeholder="Podaj haslo"
             />
-            <i class="fa fa-key" aria-hidden="true"></i>
+            <i class="fa fa-key" aria-hidden="true" />
           </div>
 
           <button

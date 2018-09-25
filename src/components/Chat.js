@@ -17,7 +17,9 @@ class Chat extends Component {
       name: "",
       pending: true,
       eclass: "notVis",
-      ecolor: "transparent"
+      ecolor: "transparent",
+      userClass: ["userList"],
+      ucolor: "transparent"
     };
   }
   updateMessage = e => {
@@ -116,16 +118,14 @@ class Chat extends Component {
         ecolor: "transparent"
       });
     }
-  };
-
-  showUserList = () => {
-    const users = document.querySelector(".userList");
-    if (users.classList.contains("displayUsers")) {
-      users.classList.remove("displayUsers");
-    } else {
-      users.classList.add("displayUsers");
+    if (this.state.userClass.includes("moveUsers")) {
+      this.setState({
+        userClass: ["userList"],
+        ucolor: "transparent"
+      });
     }
   };
+
   addEmoji = e => {
     let emojiPic = String.fromCodePoint(`0x${e.unified}`);
     this.setState({
@@ -142,6 +142,19 @@ class Chat extends Component {
       this.setState({
         eclass: "notVis",
         ecolor: "transparent"
+      });
+    }
+  };
+  controllUserList = e => {
+    if (this.state.userClass.includes("moveUsers")) {
+      this.setState({
+        userClass: ["userList"],
+        ucolor: "transparent"
+      });
+    } else {
+      this.setState({
+        userClass: ["userList", "moveUsers"],
+        ucolor: "rgba(141, 83, 83, 0.856)"
       });
     }
   };
@@ -208,10 +221,13 @@ class Chat extends Component {
               {actualMessages}
             </CSSTransitionGroup>
           </div>
-          <div className="userList">{actualUsers}</div>
-          <button onClick={this.showUserList} className="showUsers">
-            {" "}
-            show
+          <div className={this.state.userClass.join(" ")}>{actualUsers}</div>
+          <button
+            style={{ backgroundColor: this.state.ucolor }}
+            onClick={this.controllUserList}
+            className="users--button"
+          >
+            <i class="fa fa-users" aria-hidden="true" />
           </button>
           <MainInput
             message={this.state.message}
@@ -221,11 +237,9 @@ class Chat extends Component {
             ecolor={this.state.ecolor}
             addEmoji={this.addEmoji}
           />
-
           <input
             className="inputSend"
             onClick={this.submitMessage}
-            style={{}}
             type="submit"
             value="Send your message"
           />

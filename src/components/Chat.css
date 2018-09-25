@@ -110,6 +110,10 @@
     padding: 20px 0 0 20px;
 }
 
+.users--button {
+    display: none;
+}
+
 .userItem {
     font-family: 'Exo 2', sans-serif;
     margin-bottom: 5px;
@@ -180,26 +184,48 @@
         right: 0;
         transform: translateX(100%);
         transition: .2s;
-        width: 200px;
     }
-    .showUsers {
+    .moveUsers {
+        transform: translateX(0);
+        transition: .2s;
+    }
+    .users--button {
         display: block;
         position: absolute;
-        right: 0;
-        bottom: 0;
+        background-color: rgba(255, 255, 255, 0.054);
+        color: white;
         height: 80px;
         width: 80px;
-        color: white;
+        right: 0;
+        bottom: 0;
         border: 0;
         border-top: 1px solid rgba(255, 255, 255, 0.054);
         border-left: 1px solid rgba(255, 255, 255, 0.054);
         border-right: 1px solid rgba(255, 255, 255, 0.054);
+        transition: 0.1s;
         outline: 0 !important;
-        background-color: transparent;
-        cursor: pointer;
-    }
-    .displayUsers {
-        transform: translateX(0);
         transition: .2s;
+    }
+    .inputSend {
+        width: calc(100% - 80px);
+    }
+}
+@media (max-width: 720px){
+    .mainChat {
+        width: 500px;
+    }
+    .userList {
+        background-color: rgba(141, 83, 83, 1);
+        width: 100%;
+    }
+}
+@media (max-width: 500px){
+    .mainChat {
+        width: 360px;
+    }
+}
+@media (max-width: 360px){
+    .mainChat {
+        width: 340px;
     }
 }

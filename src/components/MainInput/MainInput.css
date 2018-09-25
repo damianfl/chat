@@ -55,7 +55,7 @@
     right: 0;
     bottom: 160px;
     transform: translateX(100%);
-    transition: .2s;    
+    transition: .2s;
 }
 
 .vis {
@@ -95,4 +95,10 @@
 
 .emoji-mart-category .emoji-mart-emoji:hover:before {
     background-color: black;
+}
+
+@media (max-width: 720px) {
+    .emoji-mart {
+        background-color: rgba(141, 83, 83, 1);
+    }
 }

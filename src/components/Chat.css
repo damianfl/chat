@@ -45,11 +45,11 @@
     margin: 0 auto;
     border-radius: 5px;
     position: absolute;
+    overflow: hidden;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 25px;
-    overflow: hidden;
 }
 
 .logout--button {
@@ -58,7 +58,6 @@
     height: 36px;
     width: 80px;
     right: 0;
-    top: -37px;
     background-color: rgba(141, 83, 83, 0.856);
     border: 0;
     color: white;
@@ -118,8 +117,13 @@
     font-weight: bold;
 }
 
+.showUsers {
+    display: none;
+}
+
 .listItem {
     font-family: 'Muli', sans-serif;
+    word-break: break-word;
 }
 
 .inputSend {
@@ -138,7 +142,7 @@
 }
 
 .inputSend:hover {
-    font-size: 30px;
+    font-size: 26px;
     transition: .1s;
 }
 
@@ -164,32 +168,38 @@
     transition: all 0.5s ease-in;
 }
 
-/* emoji styling panel  */
-
-.emoji-mart-bar {
-    display: none;
-}
-
-.emoji-mart-search {
-    display: none;
-}
-
-.emoji-mart {
-    width: 500px;
-    background-color: rgba(255, 255, 255, 0.054);
-    border: 1px solid rgba(255, 255, 255, 0.054);
-}
-
-.emoji-mart-scroll {
-    padding: 0;
-}
-
-.emoji-mart-category-label span {
-    background-color: rgba(141, 83, 83, 0.856);
-    color: #fff;
-    text-align: center;
-}
-
-.emoji-mart-category .emoji-mart-emoji:hover:before{
-    background-color: black;
+@media (max-width: 1030px) {
+    .mainChat {
+        width: 700px;
+    }
+    .chat {
+        width: 100%;
+    }
+    .userList {
+        position: absolute;
+        right: 0;
+        transform: translateX(100%);
+        transition: .2s;
+        width: 200px;
+    }
+    .showUsers {
+        display: block;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        height: 80px;
+        width: 80px;
+        color: white;
+        border: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.054);
+        border-left: 1px solid rgba(255, 255, 255, 0.054);
+        border-right: 1px solid rgba(255, 255, 255, 0.054);
+        outline: 0 !important;
+        background-color: transparent;
+        cursor: pointer;
+    }
+    .displayUsers {
+        transform: translateX(0);
+        transition: .2s;
+    }
 }

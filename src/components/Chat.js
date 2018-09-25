@@ -16,7 +16,7 @@ class Chat extends Component {
       email: "",
       name: "",
       pending: true,
-      eclass: "notVis", 
+      eclass: "notVis",
       ecolor: "transparent"
     };
   }
@@ -113,8 +113,17 @@ class Chat extends Component {
     if (this.state.eclass === "vis") {
       this.setState({
         eclass: "notVis",
-        ecolor: "transparent"  
+        ecolor: "transparent"
       });
+    }
+  };
+
+  showUserList = () => {
+    const users = document.querySelector(".userList");
+    if (users.classList.contains("displayUsers")) {
+      users.classList.remove("displayUsers");
+    } else {
+      users.classList.add("displayUsers");
     }
   };
   addEmoji = e => {
@@ -200,7 +209,10 @@ class Chat extends Component {
             </CSSTransitionGroup>
           </div>
           <div className="userList">{actualUsers}</div>
-
+          <button onClick={this.showUserList} className="showUsers">
+            {" "}
+            show
+          </button>
           <MainInput
             message={this.state.message}
             updateMessage={this.updateMessage}
@@ -208,7 +220,6 @@ class Chat extends Component {
             eclass={this.state.eclass}
             ecolor={this.state.ecolor}
             addEmoji={this.addEmoji}
-
           />
 
           <input

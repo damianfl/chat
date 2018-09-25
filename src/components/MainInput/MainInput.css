@@ -42,7 +42,8 @@
 }
 
 .showEmojisButton:hover {
-    font-size: 30px;
+    transition: .1s;
+    font-size: 35px;
     cursor: pointer;
 }
 
@@ -64,4 +65,34 @@
     position: absolute;
     right: 0;
     bottom: 160px;
+}
+
+/* emoji styling panel  */
+
+.emoji-mart-bar {
+    display: none;
+}
+
+.emoji-mart-search {
+    display: none;
+}
+
+.emoji-mart {
+    width: 500px;
+    background-color: rgba(255, 255, 255, 0.054);
+    border: 1px solid rgba(255, 255, 255, 0.054);
+}
+
+.emoji-mart-scroll {
+    padding: 0;
+}
+
+.emoji-mart-category-label span {
+    background-color: rgba(141, 83, 83, 0.856);
+    color: #fff;
+    text-align: center;
+}
+
+.emoji-mart-category .emoji-mart-emoji:hover:before {
+    background-color: black;
 }
